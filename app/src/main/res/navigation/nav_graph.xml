@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/permissionsFragment">
+
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.prequel.camera.prototype.fragments.PermissionsFragment"
+        android:label="PermissionsFragment" >
+        <action
+            android:id="@+id/action_permissions_to_camera"
+            app:destination="@id/cameraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.prequel.camera.prototype.fragments.CameraFragment"
+        android:label="CameraFragment" >
+        <action
+            android:id="@+id/action_camera_to_permissions"
+            app:destination="@id/permissionsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/action_camera_to_gallery"
+            app:destination="@id/galleryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.prequel.camera.prototype.fragments.GalleryFragment"
+        android:label="GalleryFragment" >
+        <argument
+            android:name="root_directory"
+            app:argType="string" />
+    </fragment>
+</navigation>
