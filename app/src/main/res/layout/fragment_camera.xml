@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="cameraHandler"
+            type="com.prequel.camera.prototype.fragments.CameraFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_dark">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/view_finder"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/camera_capture_button"
+            android:layout_width="@dimen/round_button_large"
+            android:layout_height="@dimen/round_button_large"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@{cameraHandler.captureButtonColor}"
+            android:backgroundTintMode="multiply"
+            android:contentDescription="@string/capture_button_desc"
+            android:scaleType="fitCenter"
+            android:stateListAnimator="@animator/scale_animation"
+            android:onClick="@{() -> cameraHandler.takePicture()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.96" />
+
+        <ImageButton
+            android:id="@+id/gallery_button"
+            android:layout_width="@dimen/round_button_medium"
+            android:layout_height="@dimen/round_button_medium"
+            android:background="@drawable/gallery_button"
+            android:contentDescription="@string/gallery_button_desc"
+            android:padding="@dimen/spacing_small"
+            android:scaleType="fitCenter"
+            android:onClick="@{() -> cameraHandler.openGallery()}"
+            app:layout_constraintBottom_toBottomOf="@+id/camera_capture_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/camera_capture_button"
+            app:layout_constraintTop_toTopOf="@+id/camera_capture_button"
+            app:srcCompat="@drawable/ic_mountains_photo"
+            app:srcFile="@{cameraHandler.galleryPreviewUri}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
